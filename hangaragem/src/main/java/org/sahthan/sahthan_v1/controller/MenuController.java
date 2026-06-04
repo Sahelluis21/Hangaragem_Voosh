@@ -15,7 +15,7 @@ public class MenuController {
     @FXML
     public void irParaCadastrar(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/CadastrarAeronave/CadastrarAeronaves.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/CadastrarAeronave/CadastrarAeronave.fxml"));
             Parent root = loader.load();
 
             Scene novaCena = new Scene(root);
@@ -36,7 +36,7 @@ public class MenuController {
         try {
             // 1. Carrega o arquivo FXML da nova tela
             // Ajuste o caminho de acordo com a estrutura do seu projeto (ex: /org/sahthan/sahthan_v1/view/...)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/CadastrarAeronave/VisualizarAeronaves.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/CadastrarAeronave/VisualizarAeronave.fxml"));
             Parent root = loader.load();
 
             // 2. Cria a nova cena com o arquivo FXML carregado

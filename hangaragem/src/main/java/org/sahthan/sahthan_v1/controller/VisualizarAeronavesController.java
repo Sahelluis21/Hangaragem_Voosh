@@ -34,6 +34,16 @@ public class VisualizarAeronavesController implements Initializable {
     private TableColumn<Aeronave, String> columnModelo;
     @FXML
     private TableColumn<Aeronave, String> columnMatricula;
+    @FXML
+    private TableColumn<Aeronave, String> columnFabricante;
+    @FXML
+    private TableColumn<Aeronave, Double> columnComprimento;
+    @FXML
+    private TableColumn<Aeronave, Double> columnAltura;
+    @FXML
+    private TableColumn<Aeronave, Double> columnLargura;
+    @FXML
+    private TableColumn<Aeronave, Double> columnPesoMedio;
 
     private List<Aeronave> listaAeronaves = aeronaveService.listarAeronaves();
 
@@ -46,6 +56,11 @@ public class VisualizarAeronavesController implements Initializable {
 
             columnMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
             columnModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+            columnFabricante.setCellValueFactory(new PropertyValueFactory<>("fabricante"));
+            columnComprimento.setCellValueFactory(new PropertyValueFactory<>("comprimento"));
+            columnAltura.setCellValueFactory(new PropertyValueFactory<>("altura"));
+            columnLargura.setCellValueFactory(new PropertyValueFactory<>("largura"));
+            columnPesoMedio.setCellValueFactory(new PropertyValueFactory<>("pesoMedio"));
             observableListAeronaves = FXCollections.observableArrayList(listaAeronaves);
 
             tableViewAeronave.setItems(observableListAeronaves);
