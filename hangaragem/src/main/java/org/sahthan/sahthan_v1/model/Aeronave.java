@@ -3,24 +3,26 @@ package org.sahthan.sahthan_v1.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "modelo")
-public class Modelo{
+@Table(name = "aeronave")
+public class Aeronave {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nome;
+    private String modelo;
+    private String matricula;
     private String fabricante;
     private double comprimento;
     private double largura;
     private double pesoMedio;
     private double altura;
 
-    public Modelo() {
+    public Aeronave() {
     }
 
-    public Modelo(String nome, String fabricante, double comprimento, double largura, double pesoMedio, double altura) {
-        this.nome = nome;
+    public Aeronave(String modelo, String matricula, String fabricante, double comprimento, double largura, double pesoMedio, double altura) {
+        this.modelo = modelo;
+        this.matricula = matricula;
         this.fabricante = fabricante;
         this.comprimento = comprimento;
         this.largura = largura;
@@ -28,12 +30,12 @@ public class Modelo{
         this.altura = altura;
     }
 
-    public String getNome() {
-        return nome;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public int getId() {
@@ -82,6 +84,14 @@ public class Modelo{
 
     public void setAltura(double altura) {
         this.altura = altura;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 }
 

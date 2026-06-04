@@ -1,6 +1,6 @@
 package org.sahthan.sahthan_v1.dao;
 
-import org.sahthan.sahthan_v1.model.Modelo;
+import org.sahthan.sahthan_v1.model.Aeronave;
 import org.sahthan.sahthan_v1.util.JPAUtil;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
@@ -9,12 +9,12 @@ import jakarta.persistence.EntityTransaction;
 import java.util.List;
 
 @RequestScoped
-public class ModeloDAO {
+public class AeronaveDAO {
 
-    public ModeloDAO() {
+    public AeronaveDAO() {
     }
 
-    public boolean inserirModelo(Modelo modelo){
+    public boolean inserirAeronave(Aeronave aeronave){
 
         //obter gerador e fabrica
         EntityManager em = JPAUtil.getEntityManager();
@@ -24,7 +24,7 @@ public class ModeloDAO {
             //começar operação
             tx.begin();
 
-            em.persist(modelo);
+            em.persist(aeronave);
 
             tx.commit();
             return true;
@@ -41,16 +41,16 @@ public class ModeloDAO {
         }
     }
 
-    public List<Modelo> listarModelo(){
+    public List<Aeronave> listarAeronave(){
         EntityManager em = JPAUtil.getEntityManager();
 
         try{
-            String jpql = "SELECT m FROM Modelo m";
+            String jpql = "SELECT m FROM Aeronave m";
 
-            List<Modelo> lista = em.createQuery(jpql, Modelo.class).getResultList();
+            List<Aeronave> lista = em.createQuery(jpql, Aeronave.class).getResultList();
             return lista;
         }catch(Exception e){
-            System.out.println("ERRO ao listar modelo: " + e.getMessage());
+            System.out.println("ERRO ao listar aeronave: " + e.getMessage());
             return null;
         }finally{
             em.close();
@@ -58,7 +58,7 @@ public class ModeloDAO {
 
     }
 
-    public void excluirModelo(int id) {
+    public void excluirAeronave(int id) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
 
@@ -66,13 +66,13 @@ public class ModeloDAO {
             tx.begin();
 
             // tornar monitorado
-            Modelo modeloGerenciada = em.find(Modelo.class, id);
+            Aeronave aeronaveGerenciada = em.find(Aeronave.class, id);
 
             // remove se existir
-            if (modeloGerenciada != null) {
+            if (aeronaveGerenciada != null) {
 
                 // remove
-                em.remove(modeloGerenciada);
+                em.remove(aeronaveGerenciada);
 
                 tx.commit();
                 System.out.println("Modelo ID " + id + " excluída.");
@@ -91,7 +91,7 @@ public class ModeloDAO {
         }
     }
 
-    public boolean atualizarModelo(Modelo modelo) {
+    public boolean atualizarAeronave(Aeronave aeronave) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
 
@@ -100,10 +100,10 @@ public class ModeloDAO {
 
             // O merge analisa o id do objeto
             // Se o id existir ele faz o UPDATE
-            em.merge(modelo);
+            em.merge(aeronave);
 
             tx.commit();
-            System.out.println("Modelo ID " + modelo.getId() + " atualizado.");
+            System.out.println("Modelo ID " + aeronave.getId() + " atualizado.");
             return true;
 
         } catch (Exception e) {
@@ -117,13 +117,13 @@ public class ModeloDAO {
         }
     }
 
-    public List<Modelo> buscarPorNome(String nomeDigitado) {
+    public List<Aeronave> buscarPorNome(String nomeDigitado) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
             //consulta JPQL buscando por nome em Modelo
             String jpql = "SELECT m FROM Modelo m WHERE LOWER(m.nome) LIKE LOWER(:nome)";
 
-            return em.createQuery(jpql, Modelo.class)
+            return em.createQuery(jpql, Aeronave.class)
                     .setParameter("nome", "%" + nomeDigitado + "%") // O % faz o papel do "contém"
                     .getResultList();
         } finally {

@@ -14,5 +14,5 @@ module org.sahthan.sahthan_v1 {
     exports org.sahthan.sahthan_v1;
     exports org.sahthan.sahthan_v1.controller;
     opens org.sahthan.sahthan_v1.controller to javafx.fxml;
-    opens org.sahthan.sahthan_v1.model to org.hibernate.orm.core;
+    opens org.sahthan.sahthan_v1.model to org.hibernate.orm.core, javafx.base, javafx.fxml;
 }

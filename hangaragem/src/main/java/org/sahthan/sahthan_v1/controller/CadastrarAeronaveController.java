@@ -1,15 +1,26 @@
 package org.sahthan.sahthan_v1.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import org.sahthan.sahthan_v1.model.Modelo;
-import org.sahthan.sahthan_v1.service.ModeloService;
+import javafx.stage.Stage;
+import org.sahthan.sahthan_v1.application.MenuApllication;
+import org.sahthan.sahthan_v1.model.Aeronave;
+import org.sahthan.sahthan_v1.service.AeronaveService;
 
-public class ModeloController {
+import java.io.IOException;
+
+public class CadastrarAeronaveController {
 
     @FXML
-    private TextField txtNome;
+    private TextField txtModelo;
+    @FXML
+    private TextField txtMatricula;
     @FXML
     private TextField txtFabricante;
     @FXML
@@ -22,13 +33,14 @@ public class ModeloController {
     private TextField txtPesoMedio;
 
 
-    private final ModeloService service = new ModeloService();
+    private final AeronaveService aeronaveService = new AeronaveService();
 
     @FXML
     private void onSalvar() {
         try {
             // 1. Coletar dados e converter tipos numéricos
-            String nome = txtNome.getText();
+            String modelo = txtModelo.getText();
+            String matricula = txtMatricula.getText();
             String fabricante = txtFabricante.getText();
             double comprimento = Double.parseDouble(txtComprimento.getText());
             double largura = Double.parseDouble(txtLargura.getText());
@@ -36,31 +48,30 @@ public class ModeloController {
             double peso = Double.parseDouble(txtPesoMedio.getText());
 
 
-            Modelo novoModelo = new Modelo(nome, fabricante, comprimento, largura, peso, altura);
+            Aeronave novoAeronave = new Aeronave(modelo, matricula, fabricante, comprimento, largura, peso, altura);
 
 
-            service.salvarModelo(novoModelo);
+            aeronaveService.salvarAeronave(novoAeronave);
 
 
             exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Modelo cadastrado com sucesso!");
             onLimpar();
 
-        } catch (NumberFormatException e) {
-            exibirAlerta(Alert.AlertType.ERROR, "Erro de Preenchimento", "Verifique os campos numéricos (use ponto em vez de vírgula).");
-        } catch (Exception e) {
+        }catch (Exception e) {
             exibirAlerta(Alert.AlertType.ERROR, "Erro no Sistema", e.getMessage());
         }
     }
 
     @FXML
     private void onLimpar() {
-        txtNome.clear();
+        txtModelo.clear();
+        txtMatricula.clear();
         txtFabricante.clear();
         txtComprimento.clear();
         txtLargura.clear();
         txtAltura.clear();
         txtPesoMedio.clear();
-        txtNome.requestFocus();
+        txtMatricula.requestFocus();
     }
 
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
@@ -69,5 +80,19 @@ public class ModeloController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
+    }
+
+    @FXML
+    public void voltarMenu(ActionEvent event) {
+        try {
+            MenuApllication app = new MenuApllication();
+
+            Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            app.start(stageAtual);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
