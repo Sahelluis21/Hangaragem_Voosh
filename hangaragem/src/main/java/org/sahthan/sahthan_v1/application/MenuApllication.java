@@ -11,6 +11,7 @@ import java.net.URL;
 
 public class MenuApllication extends Application {
 
+    //inicia aplicação pelo menu
     @Override
     public void start(Stage stage) throws IOException {
 

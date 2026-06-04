@@ -1,4 +1,4 @@
-package org.sahthan.sahthan_v1.controller;
+package org.sahthan.sahthan_v1.controller.locacao;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

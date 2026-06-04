@@ -7,7 +7,8 @@
     <persistence-unit name="sahthanPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>com.sahthan.sahthan_v1.model.Modelo</class>
+        <class>com.sahthan.sahthan_v1.model.Aeronave</class>
+        <class>org.sahthan.sahthan_v1.model.Localidade</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

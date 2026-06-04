@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sahthan.sahthan_v1.controller.locacao.VisualizarLocacaoController">
    <children>
-      <TableView fx:id="tableViewAeronave" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: C2E1FF;">
+      <TableView fx:id="tableViewLocacao" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: C2E1FF;">
         <columns>
           <TableColumn fx:id="columnLocalidade" prefWidth="75.0" style="-fx-base: #82C1FF;" text="Localidade" />
           <TableColumn fx:id="columnHangar" prefWidth="75.0" style="-fx-base: #82C1FF;" text="Hangar" />
@@ -22,7 +22,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="remover" mnemonicParsing="false" onAction="#removerAeronave" style="-fx-base: FF8282;" text="Remover" />
+      <Button fx:id="remover" mnemonicParsing="false" onAction="#removerLocacao" style="-fx-base: FF8282;" text="Remover" />
       <Button fx:id="menu" mnemonicParsing="false" onAction="#voltarMenu" style="-fx-base: #969EFF;" text="Menu" />
    </children>
    <padding>

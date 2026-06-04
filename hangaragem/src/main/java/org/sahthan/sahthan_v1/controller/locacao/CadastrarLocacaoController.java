@@ -1,4 +1,4 @@
-package org.sahthan.sahthan_v1.controller;
+package org.sahthan.sahthan_v1.controller.locacao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,6 @@ import org.sahthan.sahthan_v1.service.LocacaoService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,15 +42,17 @@ public class CadastrarLocacaoController implements Initializable {
     private ComboBox<Aeronave> comboAeronave;
 
 
-
+    //listas
     private List<Localidade> listaLocalidade;
     private List<Hangar> listaHangar;
     private List<Aeronave> listaAeronave;
 
+    //observer lists
     private ObservableList<Localidade> observableListLocalidade;
     private ObservableList<Aeronave> observableListAeronave;
     private ObservableList<Hangar> observableListHangar;
 
+    //carrega combo de localidade e aeronave
     public void carregarComboBox(){
 
         listaLocalidade = locacaoService.listarLocalidade();
@@ -65,6 +66,7 @@ public class CadastrarLocacaoController implements Initializable {
 
     }
 
+    //carrega combo hangar
     public void carregarComboHangar(){
         Localidade localidade = comboLocalidade.getValue();
 
@@ -77,6 +79,7 @@ public class CadastrarLocacaoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         carregarComboBox();
 
+        //inicializa combo do hangar dps de selecionada a localidade
         comboLocalidade.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {carregarComboHangar();});
 
@@ -96,22 +99,17 @@ public class CadastrarLocacaoController implements Initializable {
             Aeronave aeronave = comboAeronave.getSelectionModel().getSelectedItem();
             Hangar hangar = comboHangar.getSelectionModel().getSelectedItem();
 
-            if(hangar.getStatusHangar() == LOCADO){
-                exibirAlerta(Alert.AlertType.ERROR, "Erro no Sistema", "Hangar já está locado");
-                onLimpar();
-            }else{
 
-                hangar.setStatusHangar(LOCADO);
-                hangarService.atualizarHangar(hangar);
-                Locacao novaLocacao = new Locacao(localidade, hangar, aeronave, checkIn, checkOut, valor);
+            hangarService.atualizarHangar(hangar);
+            Locacao novaLocacao = new Locacao(localidade, hangar, aeronave, checkIn, checkOut, valor);
 
 
-                locacaoService.inserirlocacao(novaLocacao);
+            locacaoService.inserirlocacao(novaLocacao);
 
 
-                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Modelo cadastrado com sucesso!");
-                onLimpar();
-            }
+            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Locação feita com sucesso!");
+            onLimpar();
+
 
         }catch (Exception e) {
             exibirAlerta(Alert.AlertType.ERROR, "Erro no Sistema", e.getMessage());
@@ -123,6 +121,9 @@ public class CadastrarLocacaoController implements Initializable {
         txtValor.clear();
         txtCheckout.clear();
         txtCheckin.clear();
+        comboLocalidade.getSelectionModel().clearSelection();
+        comboAeronave.getSelectionModel().clearSelection();
+        comboHangar.getSelectionModel().clearSelection();
     }
 
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {

@@ -12,10 +12,11 @@ import java.io.IOException;
 
 public class MenuController {
 
+    //nomes bem intuitivos, funções carregadas nos botões para iniciarem outras telas
     @FXML
-    public void irParaCadastrar(ActionEvent event) {
+    public void irParaCadastrarAeronave(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/CadastrarAeronave/CadastrarAeronave.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/GerenciarAeronave/CadastrarAeronave.fxml"));
             Parent root = loader.load();
 
             Scene novaCena = new Scene(root);
@@ -32,26 +33,95 @@ public class MenuController {
 
 
     @FXML
-    public void irParaVisualizar(ActionEvent event) {
+    public void irParaVisualizarAeronave(ActionEvent event) {
         try {
-            // 1. Carrega o arquivo FXML da nova tela
-            // Ajuste o caminho de acordo com a estrutura do seu projeto (ex: /org/sahthan/sahthan_v1/view/...)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/CadastrarAeronave/VisualizarAeronave.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/GerenciarAeronave/VisualizarAeronave.fxml"));
             Parent root = loader.load();
 
-            // 2. Cria a nova cena com o arquivo FXML carregado
             Scene novaCena = new Scene(root);
 
-            // 3. Pega a Stage (janela) atual a partir do evento do clique
+
             Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            // 4. Muda a cena da janela para a nova tela
             stageAtual.setScene(novaCena);
             stageAtual.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            // Dica: Trate o erro adequadamente (ex: mostrando um alerta na tela)
+
+        }
+    }
+
+    @FXML
+    public void irParaCadastrarLocalidade(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/GerenciarLocalidade/CadastrarLocalidade.fxml"));
+            Parent root = loader.load();
+
+            Scene novaCena = new Scene(root);
+
+            Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stageAtual.setScene(novaCena);
+            stageAtual.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void irParaCadastrarHangar(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/GerenciarHangar/CadastrarHangar.fxml"));
+            Parent root = loader.load();
+
+            Scene novaCena = new Scene(root);
+
+            Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stageAtual.setScene(novaCena);
+            stageAtual.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void irParaCadastrarLocacao(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/GerenciarLocacao/CadastrarLocacao.fxml"));
+            Parent root = loader.load();
+
+            Scene novaCena = new Scene(root);
+
+            Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stageAtual.setScene(novaCena);
+            stageAtual.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void irParaVisualizarLocacao(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/sahthan/sahthan_v1/GerenciarLocacao/VisualizarLocacao.fxml"));
+            Parent root = loader.load();
+
+            Scene novaCena = new Scene(root);
+
+            Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stageAtual.setScene(novaCena);
+            stageAtual.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

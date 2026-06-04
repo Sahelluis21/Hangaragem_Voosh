@@ -1,4 +1,4 @@
-package org.sahthan.sahthan_v1.controller;
+package org.sahthan.sahthan_v1.controller.localidade;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,15 +7,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.sahthan.sahthan_v1.application.MenuApllication;
-import org.sahthan.sahthan_v1.model.Aeronave;
 import org.sahthan.sahthan_v1.model.Localidade;
-import org.sahthan.sahthan_v1.service.AeronaveService;
 import org.sahthan.sahthan_v1.service.LocalidadeService;
 
 import java.io.IOException;
 
 public class CadastrarLocalidadeController {
 
+    //atributos da tela
     @FXML
     private TextField txtNomeAeroporto;
     @FXML
@@ -25,25 +24,29 @@ public class CadastrarLocalidadeController {
     @FXML
     private TextField txtUF;
 
+    //service
     private final LocalidadeService localidadeService = new LocalidadeService();
 
+
+    //Função para salvar no banco de dados chamando a service
     @FXML
     private void onSalvar() {
         try {
 
+            //carrega os valores escritos
             String nomeAeroporto = txtNomeAeroporto.getText();
             String uf = txtCidade.getText();
             String cidade = txtUF.getText();
             int nPistas = Integer.parseInt(txtnPistas.getText());
 
-
+            //intancia uma localidade para ser cadastrada
             Localidade novaLocalidade = new Localidade(nomeAeroporto, nPistas, cidade, uf);
 
-
+            //service
             localidadeService.inserirLocalidade(novaLocalidade);
 
-
-            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Modelo cadastrado com sucesso!");
+            //conclusões
+            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Localidade cadastrada com sucesso!");
             onLimpar();
 
         }catch (Exception e) {
@@ -51,6 +54,7 @@ public class CadastrarLocalidadeController {
         }
     }
 
+    //limpa os campos especificados da tela
     @FXML
     private void onLimpar() {
         txtNomeAeroporto.clear();
@@ -59,6 +63,7 @@ public class CadastrarLocalidadeController {
         txtUF.clear();
     }
 
+    //exibe alerta na tela
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
@@ -67,6 +72,7 @@ public class CadastrarLocalidadeController {
         alerta.showAndWait();
     }
 
+    //volta para o menu principal
     @FXML
     public void voltarMenu(ActionEvent event) {
         try {

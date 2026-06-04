@@ -1,4 +1,4 @@
-package org.sahthan.sahthan_v1.controller;
+package org.sahthan.sahthan_v1.controller.hangar;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,15 +19,14 @@ import org.sahthan.sahthan_v1.service.LocalidadeService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.sahthan.sahthan_v1.model.StatusHangar.DISPONIVEL;
-import static org.sahthan.sahthan_v1.model.StatusHangar.LOCADO;
 
 public class CadastrarHangarController implements Initializable {
 
+    //atributos presentes na tela
     @FXML
     private TextField txtNome;
     @FXML
@@ -37,6 +36,7 @@ public class CadastrarHangarController implements Initializable {
     @FXML
     private TextField txtLargura;
 
+    //services
     LocalidadeService localidadeService = new LocalidadeService();
     HangarService hangarService = new HangarService();
 
@@ -44,40 +44,45 @@ public class CadastrarHangarController implements Initializable {
     @FXML
     private ComboBox<Localidade> comboLocalidade;
 
+    //lista de localidade
     private List<Localidade> listaLocalidade;
 
+    //observer para carregar na tela as localidades
     private ObservableList<Localidade> observableListLocalidade;
 
     public void carregarComboBox(){
-
+        //carrega lista de localidade
         listaLocalidade = localidadeService.listarLocalidade();
 
         //carrega observable list com as localidade para serem exibidads
         observableListLocalidade = FXCollections.observableArrayList(listaLocalidade);
 
+        //passa pra comboBox
         comboLocalidade.setItems(observableListLocalidade);
     }
 
+    //salva chamando a service
     @FXML
     private void onSalvar() {
         try {
-
+            //passando atributos para variaveis
             String nome = txtNome.getText();
             int altura = Integer.parseInt(txtAltura.getText());
             int largura = Integer.parseInt(txtLargura.getText());
             int comprimento = Integer.parseInt(txtComprimento.getText());
             StatusHangar statusHangar = DISPONIVEL;
 
+            //guardando localidade selecionada na comboBox
             Localidade localidade = comboLocalidade.getSelectionModel().getSelectedItem();
 
-
+            //intanciando novo hangar
             Hangar novohangar = new Hangar(nome, altura, largura, comprimento, localidade, statusHangar);
 
-
+            //manda pra service
             hangarService.inserirHangar(novohangar);
 
-
-            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Modelo cadastrado com sucesso!");
+            //conclusões
+            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Hangar cadastrado com sucesso!");
             onLimpar();
 
         }catch (Exception e) {
@@ -85,14 +90,17 @@ public class CadastrarHangarController implements Initializable {
         }
     }
 
+    //limpar tela
     @FXML
     private void onLimpar() {
         txtNome.clear();
         txtAltura.clear();
         txtLargura.clear();
         txtComprimento.clear();
+        comboLocalidade.getSelectionModel().clearSelection();
     }
 
+    //alerta na tela
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
@@ -101,6 +109,7 @@ public class CadastrarHangarController implements Initializable {
         alerta.showAndWait();
     }
 
+    //voltar para o menu
     @FXML
     public void voltarMenu(ActionEvent event) {
         try {
@@ -115,6 +124,7 @@ public class CadastrarHangarController implements Initializable {
         }
     }
 
+    //carrega as infos das listas na comboBox da tela
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarComboBox();

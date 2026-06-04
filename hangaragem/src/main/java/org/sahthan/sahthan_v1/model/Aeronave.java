@@ -93,5 +93,12 @@ public class Aeronave {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
+
+    //converter classe para seu nome
+    @Override
+    public String toString() {
+
+        return this.matricula;
+    }
 }
 

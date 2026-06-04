@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class VisualizarAeronavesController implements Initializable {
+public class VisualizarAeronaveController implements Initializable {
 
     private final AeronaveService aeronaveService = new AeronaveService();
 
