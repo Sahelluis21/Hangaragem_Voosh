@@ -2,56 +2,45 @@ package org.sahthan.sahthan_v1.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.sahthan.sahthan_v1.application.MenuApllication;
 import org.sahthan.sahthan_v1.model.Aeronave;
+import org.sahthan.sahthan_v1.model.Localidade;
 import org.sahthan.sahthan_v1.service.AeronaveService;
+import org.sahthan.sahthan_v1.service.LocalidadeService;
 
 import java.io.IOException;
 
-public class CadastrarAeronaveController {
+public class CadastrarLocalidadeController {
 
     @FXML
-    private TextField txtModelo;
+    private TextField txtNomeAeroporto;
     @FXML
-    private TextField txtMatricula;
+    private TextField txtnPistas;
     @FXML
-    private TextField txtFabricante;
+    private TextField txtCidade;
     @FXML
-    private TextField txtComprimento;
-    @FXML
-    private TextField txtLargura;
-    @FXML
-    private TextField txtAltura;
-    @FXML
-    private TextField txtPesoMedio;
+    private TextField txtUF;
 
-
-    private final AeronaveService aeronaveService = new AeronaveService();
+    private final LocalidadeService localidadeService = new LocalidadeService();
 
     @FXML
     private void onSalvar() {
         try {
-            // 1. Coletar dados e converter tipos numéricos
-            String modelo = txtModelo.getText();
-            String matricula = txtMatricula.getText();
-            String fabricante = txtFabricante.getText();
-            double comprimento = Double.parseDouble(txtComprimento.getText());
-            double largura = Double.parseDouble(txtLargura.getText());
-            double altura = Double.parseDouble(txtAltura.getText());
-            double peso = Double.parseDouble(txtPesoMedio.getText());
+
+            String nomeAeroporto = txtNomeAeroporto.getText();
+            String uf = txtCidade.getText();
+            String cidade = txtUF.getText();
+            int nPistas = Integer.parseInt(txtnPistas.getText());
 
 
-            Aeronave novoAeronave = new Aeronave(modelo, matricula, fabricante, comprimento, largura, peso, altura);
+            Localidade novaLocalidade = new Localidade(nomeAeroporto, nPistas, cidade, uf);
 
 
-            aeronaveService.salvarAeronave(novoAeronave);
+            localidadeService.inserirLocalidade(novaLocalidade);
 
 
             exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Modelo cadastrado com sucesso!");
@@ -64,14 +53,10 @@ public class CadastrarAeronaveController {
 
     @FXML
     private void onLimpar() {
-        txtModelo.clear();
-        txtMatricula.clear();
-        txtFabricante.clear();
-        txtComprimento.clear();
-        txtLargura.clear();
-        txtAltura.clear();
-        txtPesoMedio.clear();
-        txtMatricula.requestFocus();
+        txtNomeAeroporto.clear();
+        txtnPistas.clear();
+        txtCidade.clear();
+        txtUF.clear();
     }
 
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
@@ -95,4 +80,6 @@ public class CadastrarAeronaveController {
             e.printStackTrace();
         }
     }
+
+
 }
