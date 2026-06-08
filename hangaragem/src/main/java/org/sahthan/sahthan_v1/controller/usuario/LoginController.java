@@ -39,12 +39,13 @@ public class LoginController {
                             email,
                             senha);
 
-            if(usuario == null){
+            if (usuario == null) {
 
                 exibirAlerta(
                         Alert.AlertType.ERROR,
                         "Erro",
-                        "Email ou senha inválidos.");
+                        "Email ou senha inválidos."
+                );
 
                 return;
             }
@@ -61,7 +62,6 @@ public class LoginController {
 
             stage.setScene(new Scene(root));
             stage.setTitle("Menu");
-
             stage.show();
 
         } catch (Exception e) {
@@ -69,7 +69,8 @@ public class LoginController {
             exibirAlerta(
                     Alert.AlertType.ERROR,
                     "Erro",
-                    e.getMessage());
+                    e.getMessage()
+            );
         }
     }
 
@@ -93,7 +94,6 @@ public class LoginController {
                             .getWindow();
 
             stageAtual.setScene(novaCena);
-
             stageAtual.show();
 
         } catch (IOException e) {

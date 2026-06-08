@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import org.sahthan.sahthan_v1.service.UsuarioService;
 
 import java.io.IOException;
@@ -46,7 +47,8 @@ public class CadastroUsuarioController {
             exibirAlerta(
                     Alert.AlertType.INFORMATION,
                     "Sucesso",
-                    "Usuário cadastrado com sucesso.");
+                    "Usuário cadastrado com sucesso."
+            );
 
             limparCampos();
 
@@ -55,7 +57,8 @@ public class CadastroUsuarioController {
             exibirAlerta(
                     Alert.AlertType.ERROR,
                     "Erro",
-                    e.getMessage());
+                    e.getMessage()
+            );
         }
     }
 
@@ -79,7 +82,6 @@ public class CadastroUsuarioController {
                             .getWindow();
 
             stageAtual.setScene(novaCena);
-
             stageAtual.show();
 
         } catch (IOException e) {
