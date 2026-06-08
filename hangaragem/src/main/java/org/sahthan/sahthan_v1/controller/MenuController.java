@@ -124,4 +124,30 @@ public class MenuController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void logout(ActionEvent event) {
+        try {
+
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "/org/sahthan/sahthan_v1/GerenciarUsuario/Login.fxml"));
+
+        Parent root = loader.load();
+
+        Scene novaCena = new Scene(root);
+
+        Stage stageAtual =
+                (Stage) ((Node) event.getSource())
+                        .getScene()
+                        .getWindow();
+
+        stageAtual.setScene(novaCena);
+        stageAtual.setTitle("Login");
+        stageAtual.show();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }
