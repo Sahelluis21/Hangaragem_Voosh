@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
@@ -9,21 +10,46 @@
 
     <children>
 
-        <VBox spacing="10"
-              layoutX="100"
-              layoutY="80">
+        <VBox alignment="CENTER"
+              spacing="12"
+              maxWidth="300"
+              AnchorPane.topAnchor="0.0"
+              AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0">
 
-            <Label text="Login"/>
+            <!-- Logo -->
+            <ImageView fitHeight="140"
+                       preserveRatio="true">
 
-            <TextField fx:id="txtEmail" promptText="Email"/>
+                <image>
+                    <Image url="@imagens/logo.png"/>
+                </image>
 
-            <PasswordField fx:id="txtSenha" promptText="Senha"/>
+            </ImageView>
 
+            <!-- Subtítulo -->
+            <Label text="Sistema de Gerenciamento de Hangares"
+                   style="-fx-font-size: 14px;"/>
+
+            <!-- Campos -->
+            <TextField fx:id="txtEmail"
+                       promptText="Email"
+                       maxWidth="250"/>
+
+            <PasswordField fx:id="txtSenha"
+                           promptText="Senha"
+                           maxWidth="250"/>
+
+            <!-- Login -->
             <Button text="Entrar"
+                    maxWidth="250"
+                    prefWidth="250"
                     onAction="#onEntrar"/>
 
-            <Button text="Criar conta"
-                    onAction="#irParaCadastro"/>
+            <!-- Cadastro -->
+            <Hyperlink text="Criar uma conta"
+                       onAction="#irParaCadastro"/>
 
         </VBox>
 
