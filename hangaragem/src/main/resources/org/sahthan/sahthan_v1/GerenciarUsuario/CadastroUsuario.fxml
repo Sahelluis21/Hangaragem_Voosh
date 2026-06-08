@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.sahthan.sahthan_v1.controller.usuario.CadastroUsuarioController">
+
+    <children>
+
+        <VBox spacing="10"
+              layoutX="100"
+              layoutY="60">
+
+            <Label text="Cadastro"/>
+
+            <TextField fx:id="txtNome" promptText="Nome"/>
+            <TextField fx:id="txtEmail" promptText="Email"/>
+            <PasswordField fx:id="txtSenha" promptText="Senha"/>
+            <PasswordField fx:id="txtConfirmarSenha" promptText="Confirmar senha"/>
+
+            <Button text="Salvar"
+                    onAction="#onSalvar"/>
+
+            <Button text="Voltar"
+                    onAction="#voltarLogin"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>
